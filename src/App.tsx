@@ -15,58 +15,38 @@ function App() {
         Yoohoo Finance
       </h1>
       <div className="flex gap-5 py-4 overflow-hidden select-none border-y-2 group">
-        <ul className="flex justify-between flex-shrink-0 min-w-full gap-5 animate-slideIn group-hover:[animation-play-state:paused]">
-          {tickers.map((ticker) => (
-            <li key={ticker.symbol} className="first:pl-5 first:border-l-2">
-              <div className="flex items-center gap-2">
-                {ticker.direction === 'up' ? (
-                  <p className="text-green-500">{`\u2191`}</p>
-                ) : (
-                  <p className="text-red-500">{`\u2193`}</p>
-                )}
-                <p>{ticker.symbol}</p>
-                <p className="text-gray-500">{ticker.price}</p>
-                <p
-                  className={`${
-                    ticker.direction === 'up'
-                      ? 'text-green-500'
-                      : 'text-red-500'
-                  }`}
-                >
-                  ({ticker.change}%)
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <ul className="flex justify-between flex-shrink-0 min-w-full gap-5 animate-slideIn group-hover:[animation-play-state:paused]">
-          {tickers.map((ticker) => (
-            <li key={ticker.symbol} className="first:pl-5 first:border-l-2">
-              <div className="flex items-center gap-2">
-                {ticker.direction === 'up' ? (
-                  <p className="text-green-500">{`\u2191`}</p>
-                ) : (
-                  <p className="text-red-500">{`\u2193`}</p>
-                )}
-                <p>{ticker.symbol}</p>
-                <p className="text-gray-500">{ticker.price}</p>
-                <p
-                  className={`${
-                    ticker.direction === 'up'
-                      ? 'text-green-500'
-                      : 'text-red-500'
-                  }`}
-                >
-                  ({ticker.change}%)
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Ticker />
+        <Ticker />
       </div>
     </div>
   );
 }
 
 export default App;
+
+function Ticker() {
+  return (
+    <ul className="flex justify-between flex-shrink-0 min-w-full gap-5 animate-slideIn group-hover:[animation-play-state:paused]">
+      {tickers.map((ticker) => (
+        <li key={ticker.symbol} className="first:pl-5 first:border-l-2">
+          <div className="flex items-center gap-2">
+            {ticker.direction === 'up' ? (
+              <p className="text-green-500">{`\u2191`}</p>
+            ) : (
+              <p className="text-red-500">{`\u2193`}</p>
+            )}
+            <p>{ticker.symbol}</p>
+            <p className="text-gray-500">{ticker.price}</p>
+            <p
+              className={`${
+                ticker.direction === 'up' ? 'text-green-500' : 'text-red-500'
+              }`}
+            >
+              ({ticker.change}%)
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
